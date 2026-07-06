@@ -25,3 +25,4 @@ const returnChildrenNumber = ( passenger: Passenger ): number => {
 
 
 returnChildrenNumber( passenger1 );
+returnChildrenNumber( passenger2 );

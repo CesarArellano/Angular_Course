@@ -1,7 +1,4 @@
 
-const skills: string[] = ['Bash','Counter','Healing'];
-
-
 interface Character {
     name: string;
     hp: number;
