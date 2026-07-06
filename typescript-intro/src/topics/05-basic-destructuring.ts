@@ -33,10 +33,11 @@ const { author } = details;
 // console.log('Author: ', author );
 
 
-const [ , , trunks = 'Not found' ]: string[] = ['Goku','Vegeta'];
+const [ , , trunks = 'Not found', goku = 'Not found' ]: string[] = ['Goku','Vegeta'];
 
 
 console.error('Personaje 3:', trunks );
+console.error('Personaje 4:', goku );
 
 
 
