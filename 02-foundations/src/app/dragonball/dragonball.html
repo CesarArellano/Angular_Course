@@ -3,18 +3,45 @@
 
 <section class="row">
   <div class="col-s12 col-sm-6">
-    <h3>Agregar:</h3>
-    <input type="text" class="form-control mt-2" placeholder="Nombre">
-    <input type="number" class="form-control mt-2" placeholder="Poder">
-    <button class="btn btn-primary mt-2">Agregar</button>
+    <h3>Add: {{ name() }}</h3>
+    <input
+      #nameInput
+      [value]="name()"
+      (change)="name.set(nameInput.value)"
+      (input)="name.set(nameInput.value)"
+      type="text" 
+      class="form-control mt-2" 
+      placeholder="Name">
+    <input 
+      #powerInput
+      [value]="power()"
+      (change)="power.set(+powerInput.value)"
+      type="number" 
+      class="form-control mt-2" 
+      placeholder="Power">
+    <button (click)="addCharacter()" class="btn btn-primary mt-2">Add</button>
   </div>
   <div class="col-12 col-sm-6">
-    <ol>
-      <li>Goku</li>
-      <li>Vegeta</li>
-      <li>Gohan</li>
-      <li>Piccolo</li>
-      <li>Trunks</li>
-    </ol>
+    <h3>Characters:</h3>
+    <ul>
+      @for (character of characters(); track character.id; let idx = $index) {
+        @if (character.power > 1000) {
+          <li>
+            <strong>{{idx + 1}} - {{ character.name }}</strong>
+            <span 
+              class="badge bg-primary ms-2"
+              [class.bg-success]="character.power > 9000"
+              [class.bg-warning]="character.power <= 9000 && character.power > 5000"
+              [class.bg-danger]="character.power <= 5000"
+              /* [ngClass]="powerClasses()" */
+            >
+              {{ character.power }}
+            </span>
+          </li>
+        }  @else {
+          <li><strong>There is no one here</strong></li>
+        }
+      }
+    </ul>
   </div>
 </section>
