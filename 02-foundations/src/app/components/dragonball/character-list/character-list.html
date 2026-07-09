@@ -1,0 +1,21 @@
+<h3>Characters:</h3>
+<ul>
+  @for (character of characters(); track character.id; let idx = $index) {
+    @if (character.power > 1000) {
+      <li>
+        <strong>{{idx + 1}} - {{ character.name }}</strong>
+        <span 
+          class="badge bg-primary ms-2"
+          [class.bg-success]="character.power > 9000"
+          [class.bg-warning]="character.power <= 9000 && character.power > 5000"
+          [class.bg-danger]="character.power <= 5000"
+          /* [ngClass]="powerClasses()" */
+        >
+          {{ character.power }}
+        </span>
+      </li>
+    }  @else {
+      <li><strong>There is no one here</strong></li>
+    }
+  }
+</ul>
