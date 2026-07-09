@@ -3,25 +3,14 @@
 
 <section class="row">
   <div class="col-s12 col-sm-6">
-    <h3>Add: {{ name() }}</h3>
-    <input
-      #nameInput
-      [value]="name()"
-      (change)="name.set(nameInput.value)"
-      (input)="name.set(nameInput.value)"
-      type="text" 
-      class="form-control mt-2" 
-      placeholder="Name">
-    <input 
-      #powerInput
-      [value]="power()"
-      (change)="power.set(+powerInput.value)"
-      type="number" 
-      class="form-control mt-2" 
-      placeholder="Power">
-    <button (click)="addCharacter()" class="btn btn-primary mt-2">Add</button>
+    <dragonball-character-add-form
+      (newCharacter)="addCharacter($event)"
+    />
   </div>
   <div class="col-12 col-sm-6">
-    <dragonball-character-list [characters]="characters()" />
+    <dragonball-character-list
+      listName="Characters List"
+      [characters]="characters()" 
+    />
   </div>
 </section>
