@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ListComponent } from '../../components/list/list';
+import { GifsService } from '../../services/gifs.service';
 
 const imageUrls: string[] = [
 	'https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg',
@@ -23,4 +24,6 @@ const imageUrls: string[] = [
 })
 export default class TrendingPageComponent {
 	gifs = imageUrls;
+
+	gifsService = inject(GifsService);
 }
