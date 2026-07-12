@@ -4,5 +4,7 @@ export const environment = {
 	companySlogan: 'Handle your gifs with ease',
 
 	// API KEYS
+	giphyApiKey: 'ZXa8UyQUo6J9gJcGV5m36aDTuRNilPYc',
 	// URLs
+	giphyUrl: 'https://api.giphy.com/v1/gifs',
 };
