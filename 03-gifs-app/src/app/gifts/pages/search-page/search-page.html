@@ -8,7 +8,10 @@
 		(keyup.enter)="onSearch(txtSearch.value)"
 		#txtSearch
 	/>
-	<button class="bg-blue-500 text-white rounded-lg p-2 cursor-pointer">
+	<button
+		(click)="onSearch(txtSearch.value)"
+		class="bg-blue-500 text-white rounded-lg p-2 cursor-pointer"
+	>
 		Search
 	</button>
 </section>

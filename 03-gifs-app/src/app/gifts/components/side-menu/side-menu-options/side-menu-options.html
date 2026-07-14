@@ -27,7 +27,7 @@
 	</div>
 	@for (history of gifsService.searchHistoryKeys(); track history) {
 	<a
-		[routerLink]="['/dashboard/search', history]"
+		[routerLink]="['/dashboard/history', history]"
 		routerLinkActive="bg-blue-800"
 		class="w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-blue-800transition ease-linear duration-150"
 	>
