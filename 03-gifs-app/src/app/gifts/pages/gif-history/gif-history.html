@@ -1,1 +1,6 @@
-<p>gif-history works!</p>,
+<p class="text-xl mt-5">
+	Showing results for: <span class="font-bold">{{query()}}</span>
+</p>
+<section class="py-4">
+	<gifs-list [gifs]="gifsByKey()" />
+</section>

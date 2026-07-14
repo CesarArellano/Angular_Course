@@ -60,4 +60,8 @@ export class GifsService {
 	searchHistoryKeys() {
 		return Object.keys(this.searchHistory());
 	}
+
+	getHistoryGifs(query: string) {
+		return this.searchHistory()[query] ?? [];
+	}
 }
