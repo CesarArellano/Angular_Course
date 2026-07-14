@@ -4,7 +4,7 @@ import { environment } from '@environments/environment';
 import { GiphyResponse } from '../interfaces/giphy.interfaces';
 import { GifMapper } from '../mappers/gif.mapper';
 import { Gif } from '../interfaces/gif.interface';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
@@ -14,6 +14,8 @@ export class GifsService {
 
 	trendingGifs = signal<Gif[]>([]);
 	trendingGifsLoading = signal<boolean>(false);
+
+	searchHistory = signal<Record<string, Gif[]>>({});
 
 	constructor() {
 		this.loadTrendingGifs();
@@ -46,6 +48,16 @@ export class GifsService {
 			.pipe(
 				map(({ data }) => data),
 				map((items) => GifMapper.mapGiphyItemsToGifArray(items)),
+				tap((items) => {
+					this.searchHistory.update((history) => ({
+						...history,
+						[query]: items,
+					}));
+				}),
 			);
+	}
+
+	searchHistoryKeys() {
+		return Object.keys(this.searchHistory());
 	}
 }

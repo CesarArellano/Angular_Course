@@ -1,3 +1,5 @@
 <div class="py-4">
-	<gifs-list [gifs]="gifs()" />
+	<boneyard-skeleton [loading]="gifsService.trendingGifsLoading()">
+		<gifs-list [gifs]="gifs()" />
+	</boneyard-skeleton>
 </div>
