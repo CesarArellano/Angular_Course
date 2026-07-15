@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { effect, inject, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment';
 import { GiphyResponse } from '../interfaces/giphy.interfaces';
 import { GifMapper } from '../mappers/gif.mapper';
@@ -20,7 +20,15 @@ export class GifsService {
 	private http = inject(HttpClient);
 
 	trendingGifs = signal<Gif[]>([]);
-	trendingGifsLoading = signal<boolean>(false);
+	isLoadingGifs = signal<boolean>(false);
+
+	trendingGifGroup = computed(() => {
+		const groups: Gif[][] = [];
+		for (let i = 0; i < this.trendingGifs().length; i += 3) {
+			groups.push(this.trendingGifs().slice(i, i + 3));
+		}
+		return groups;
+	});
 
 	searchHistory = signal<Record<string, Gif[]>>(
 		getSearchHistoryFromLocalStorage(),
@@ -31,6 +39,7 @@ export class GifsService {
 	}
 
 	loadTrendingGifs() {
+		this.isLoadingGifs.set(true);
 		this.http
 			.get<GiphyResponse>(`${environment.giphyUrl}/trending`, {
 				params: {
@@ -41,11 +50,12 @@ export class GifsService {
 			.subscribe((response) => {
 				const gifs = GifMapper.mapGiphyItemsToGifArray(response.data);
 				this.trendingGifs.set(gifs);
-				this.trendingGifsLoading.set(false);
+				this.isLoadingGifs.set(false);
 			});
 	}
 
 	searchGifs(query: string): Observable<Gif[]> {
+		this.isLoadingGifs.set(true);
 		return this.http
 			.get<GiphyResponse>(`${environment.giphyUrl}/search`, {
 				params: {
@@ -62,6 +72,9 @@ export class GifsService {
 						...history,
 						[query]: items,
 					}));
+				}),
+				tap(() => {
+					this.isLoadingGifs.set(false);
 				}),
 			);
 	}
