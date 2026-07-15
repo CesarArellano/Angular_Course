@@ -1,9 +1,11 @@
 <div>
-	<boneyard-skeleton [loading]="gifsService.isLoadingGifs()">
-		<img
-			class="h-full w-full rounded-lg object-cover"
-			[src]="url()"
-			[alt]="'Image ' + url()"
-		/>
-	</boneyard-skeleton>
+	@if (gifsService.isLoadingGifs()) {
+	<gifs-skeleton-image />
+	} @else {
+	<img
+		class="h-full w-full rounded-lg object-cover"
+		[src]="url()"
+		[alt]="'Image ' + url()"
+	/>
+	}
 </div>

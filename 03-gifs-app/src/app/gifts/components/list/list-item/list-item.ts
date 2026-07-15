@@ -1,11 +1,11 @@
 import { Component, inject, input } from '@angular/core';
 import { GifsService } from '../../../services/gifs.service';
-import { SkeletonComponent } from 'boneyard-js/angular';
+import { SkeletonImageComponent } from '../../skeleton/skeleton-image/skeleton-image';
 
 @Component({
 	selector: 'gifs-list-item',
-	imports: [SkeletonComponent],
 	templateUrl: './list-item.html',
+	imports: [SkeletonImageComponent],
 })
 export class ListItemComponent {
 	gifsService = inject(GifsService);
