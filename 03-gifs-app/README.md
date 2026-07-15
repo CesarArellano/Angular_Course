@@ -15,16 +15,16 @@ A small admin-style dashboard that browses, searches, and caches trending GIFs f
 
 ## Tech stack
 
-| Layer | Tool |
-|---|---|
-| Framework | Angular 22 (standalone components, no NgModules) |
-| Language | TypeScript 6 |
-| Styling | Tailwind CSS v4 (via `@tailwindcss/postcss`) |
-| State | Angular Signals (`signal`, `computed`, `effect`), RxJS interop (`toSignal`) |
-| HTTP | `HttpClient` |
-| Testing | Vitest |
-| Build tool | `@angular/build` (esbuild + Vite dev server) |
-| Hosting | Netlify |
+| Layer      | Tool                                                                        |
+| ---------- | --------------------------------------------------------------------------- |
+| Framework  | Angular 22 (standalone components, no NgModules)                            |
+| Language   | TypeScript 6                                                                |
+| Styling    | Tailwind CSS v4 (via `@tailwindcss/postcss`)                                |
+| State      | Angular Signals (`signal`, `computed`, `effect`), RxJS interop (`toSignal`) |
+| HTTP       | `HttpClient`                                                                |
+| Testing    | Vitest                                                                      |
+| Build tool | `@angular/build` (esbuild + Vite dev server)                                |
+| Hosting    | Netlify                                                                     |
 
 ## Getting started
 
@@ -53,7 +53,7 @@ Then drop your own [Giphy API key](https://developers.giphy.com/dashboard/) into
 ### Run the dev server
 
 ```bash
-npm start
+ng serve
 ```
 
 Navigate to `http://localhost:4200/`. The app reloads automatically as you edit source files.
@@ -61,7 +61,7 @@ Navigate to `http://localhost:4200/`. The app reloads automatically as you edit 
 ### Build
 
 ```bash
-npm run build
+ng build
 ```
 
 Production artifacts are emitted to `dist/`.
@@ -69,7 +69,7 @@ Production artifacts are emitted to `dist/`.
 ### Test
 
 ```bash
-npm test
+ng test
 ```
 
 Runs the unit test suite with Vitest.
@@ -99,13 +99,13 @@ src/app/
 
 ### Routing
 
-| Path | Component | Notes |
-|---|---|---|
-| `/dashboard` | `DashboardPageComponent` | Shell with side menu, lazy-loaded |
-| `/dashboard/trending` | `TrendingPageComponent` | Default child route, lazy-loaded |
-| `/dashboard/search` | `SearchPageComponent` | Lazy-loaded |
-| `/dashboard/history/:query` | `GifHistoryComponent` | Lazy-loaded, reads from cached search history |
-| `**` | — | Redirects to `/dashboard` (and `/dashboard/trending`) |
+| Path                        | Component                | Notes                                                 |
+| --------------------------- | ------------------------ | ----------------------------------------------------- |
+| `/dashboard`                | `DashboardPageComponent` | Shell with side menu, lazy-loaded                     |
+| `/dashboard/trending`       | `TrendingPageComponent`  | Default child route, lazy-loaded                      |
+| `/dashboard/search`         | `SearchPageComponent`    | Lazy-loaded                                           |
+| `/dashboard/history/:query` | `GifHistoryComponent`    | Lazy-loaded, reads from cached search history         |
+| `**`                        | —                        | Redirects to `/dashboard` (and `/dashboard/trending`) |
 
 ## What this project covers
 
