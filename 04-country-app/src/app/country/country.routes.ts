@@ -5,6 +5,7 @@ import { CountryLayoutComponent } from './layouts/country-layout/country-layout'
 import { ByCapitalPageComponent } from './pages/by-capital-page/by-capital-page';
 import { ByRegionPageComponent } from './pages/by-region-page/by-region-page';
 import { ByCountryPageComponent } from './pages/by-country-page/by-country-page';
+import { CountryPageComponent } from './pages/country-page/country-page';
 
 export const countryRoutes: Routes = [
   {
@@ -22,6 +23,10 @@ export const countryRoutes: Routes = [
       {
         path: 'by-region',
         component: ByRegionPageComponent,
+      },
+      {
+        path: 'by/:countryCode',
+        component: CountryPageComponent,
       },
       {
         path: '**',
