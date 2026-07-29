@@ -12,6 +12,8 @@ export class ByCapitalPageComponent {
   private countryService = inject(CountryService);
 
   searchCapital(query: string) {
-    this.countryService.searchCapital(query);
+    this.countryService.searchCapital(query).subscribe((response) => {
+      console.log(response);
+    });
   }
 }
