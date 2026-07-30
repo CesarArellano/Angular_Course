@@ -11,9 +11,22 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        |
-      </tr>
+      @for (country of countries(); track country.uuid; let i = $index) {
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ country.flag.emoji }}</td>
+          <td>
+            <img [src]="country.flag.url_svg" [alt]="country.names.common + ' flag'" class="h-6" />
+          </td>
+          <td>{{ country.names.common }}</td>
+          <td>{{ country.capitals[0]?.name }}</td>
+          <td>{{ country.population }}</td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6" class="text-center">No countries found</td>
+        </tr>
+      }
     </tbody>
   </table>
 </section>
