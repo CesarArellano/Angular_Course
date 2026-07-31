@@ -24,12 +24,16 @@ export class ByCapitalPageComponent {
 
     this.countryService.searchCapital(query).subscribe({
       next: (countries) => {
-        this.isLoading.set(false);
         this.countries.set(countries);
       },
       error: (error) => {
-        this.isLoading.set(false);
+        console.log(error.message);
+
         this.isError.set(error.message);
+        this.countries.set([]);
+      },
+      complete: () => {
+        this.isLoading.set(false);
       },
     });
   }
