@@ -3,7 +3,7 @@ export interface RESTCountryResponse {
 }
 
 export interface Data {
-  objects: Country[];
+  objects: RestCountry[];
   meta: Meta;
 }
 
@@ -17,7 +17,7 @@ export interface Meta {
   duration: number;
 }
 
-export interface Country {
+export interface RestCountry {
   names: Names;
   codes: Codes;
   capitals: Capital[];

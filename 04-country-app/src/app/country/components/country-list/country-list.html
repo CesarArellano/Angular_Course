@@ -14,12 +14,12 @@
       @for (country of countries(); track country.uuid; let i = $index) {
         <tr>
           <td>{{ i + 1 }}</td>
-          <td>{{ country.flag.emoji }}</td>
+          <td>{{ country.flag }}</td>
           <td>
-            <img [src]="country.flag.url_svg" [alt]="country.names.common + ' flag'" class="h-6" />
+            <img [src]="country.flagSvg" [alt]="country.name + ' flag'" class="h-6" />
           </td>
-          <td>{{ country.names.common }}</td>
-          <td>{{ country.capitals[0]?.name }}</td>
+          <td>{{ country.name }}</td>
+          <td>{{ country.capital }}</td>
           <td>{{ country.population }}</td>
         </tr>
       } @empty {

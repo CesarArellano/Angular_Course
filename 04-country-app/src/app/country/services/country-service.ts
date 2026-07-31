@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { RESTCountryResponse } from '../interfaces/rest-countries.interfaces';
+import { CountryMapper } from '../mappers/country.mapper';
 
 const API_URL = 'https://api.restcountries.com/countries/v5';
 
@@ -19,6 +20,10 @@ export class CountryService {
     query = query.toLowerCase();
     return this.http
       .get<RESTCountryResponse>(`${API_URL}/capitals/${query}`, { headers: this.headers })
-      .pipe(map((response) => response.data.objects));
+      .pipe(
+        map((response) =>
+          CountryMapper.fromCountryResponseArrayToCountryArray(response.data.objects),
+        ),
+      );
   }
 }

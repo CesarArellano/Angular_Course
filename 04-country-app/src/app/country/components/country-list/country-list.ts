@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Country } from '../../interfaces/rest-countries.interfaces';
+import { Country } from '../../interfaces/country.interfaces';
 
 @Component({
   selector: 'country-list',
