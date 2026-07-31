@@ -19,7 +19,7 @@ export class CountryService {
   searchCapital(query: string) {
     query = query.toLowerCase();
     return this.http
-      .get<RESTCountryResponse>(`${API_URL}/capitals/${query}`, { headers: this.headers })
+      .get<RESTCountryResponse>(`${API_URL}/capitals?q=${query}`, { headers: this.headers })
       .pipe(
         map((response) =>
           CountryMapper.fromCountryResponseArrayToCountryArray(response.data.objects),

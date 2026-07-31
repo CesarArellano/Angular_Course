@@ -8,9 +8,19 @@
         <th>Name</th>
         <th>Capital</th>
         <th>Population</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
+      @if (isLoading()) {
+        <tr>
+          <td colspan="6">
+            <div class="flex justify-center py-4">
+              <app-circular-progress-indicator size="lg" label="Loading countries" />
+            </div>
+          </td>
+        </tr>
+      }
       @for (country of countries(); track country.uuid; let i = $index) {
         <tr>
           <td>{{ i + 1 }}</td>
@@ -20,7 +30,12 @@
           </td>
           <td>{{ country.name }}</td>
           <td>{{ country.capital }}</td>
-          <td>{{ country.population }}</td>
+          <td>
+            <span class="badge badge-secondary">{{ country.population | number }}</span>
+          </td>
+          <td>
+            <a class="link-primary cursor-pointer">More info</a>
+          </td>
         </tr>
       } @empty {
         <tr>
