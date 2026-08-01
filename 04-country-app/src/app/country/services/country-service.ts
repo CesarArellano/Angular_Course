@@ -37,4 +37,15 @@ export class CountryService {
         ),
       );
   }
+
+  searchCountryByAlphaCode2(code: string) {
+    return this.http
+      .get<RESTCountryResponse>(`${API_URL}/codes.alpha_2/${code}`, { headers: this.headers })
+      .pipe(
+        map((response) =>
+          CountryMapper.fromCountryResponseArrayToCountryArray(response.data.objects),
+        ),
+        map((countries) => countries.at(0)),
+      );
+  }
 }

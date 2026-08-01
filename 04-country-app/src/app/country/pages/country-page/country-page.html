@@ -1,1 +1,15 @@
-<p>country-page works!</p>,
+@if (countryResource.error() || (!countryResource.value() && !countryResource.isLoading())) {
+  <app-not-found />
+}
+
+<!--  -->
+@if (countryResource.isLoading()) {
+  <section class="flex items-center justify-center h-full">
+    <app-circular-progress-indicator size="lg" label="Loading country" />
+  </section>
+}
+
+<!--  -->
+@if (countryResource.hasValue()) {
+  <country-information-page [country]="countryResource.value()!" />
+}
