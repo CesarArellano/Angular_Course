@@ -1,5 +1,8 @@
-<country-search-input placeholder="Search by Capital" (value)="searchCapital($event)" />
-@if (isError()) {
-  <h2>{{ isError() }}</h2>
+<country-search-input placeholder="Search by Capital" (value)="query.set($event)" />
+@if (countryResource.error()) {
+  <h2>{{ countryResource.error() }}</h2>
 }
-<country-list [countries]="countries()" [isLoading]="isLoading()" />
+<country-list
+  [countries]="countryResource.value() || []"
+  [isLoading]="countryResource.isLoading()"
+/>

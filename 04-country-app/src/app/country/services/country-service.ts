@@ -16,10 +16,21 @@ export class CountryService {
     Authorization: `Bearer ${environment.countriesApiKey}`,
   });
 
-  searchCapital(query: string) {
+  searchByCapital(query: string) {
     query = query.toLowerCase();
     return this.http
       .get<RESTCountryResponse>(`${API_URL}/capitals?q=${query}`, { headers: this.headers })
+      .pipe(
+        map((response) =>
+          CountryMapper.fromCountryResponseArrayToCountryArray(response.data.objects),
+        ),
+      );
+  }
+
+  searchByCountry(query: string) {
+    query = query.toLowerCase();
+    return this.http
+      .get<RESTCountryResponse>(`${API_URL}/name?q=${query}`, { headers: this.headers })
       .pipe(
         map((response) =>
           CountryMapper.fromCountryResponseArrayToCountryArray(response.data.objects),

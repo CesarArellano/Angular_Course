@@ -5,10 +5,11 @@ export class CountryMapper {
   static fromCountryResponseToCountry(country: RestCountry): Country {
     return {
       uuid: country.uuid,
+      cca2: country.codes.alpha_2,
       flag: country.flag.emoji,
       flagSvg: country.flag.url_svg,
       name: country.names.translations['spa'].common ?? country.names.common,
-      capital: country.capitals[0].name,
+      capital: country.capitals[0]?.name ?? '—',
       population: country.population,
     };
   }

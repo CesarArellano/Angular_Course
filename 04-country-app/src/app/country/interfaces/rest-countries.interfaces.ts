@@ -179,10 +179,10 @@ export interface Palette {
 }
 
 export interface Swatches {
-  dark_muted: string;
-  dark_vibrant: null;
+  dark_muted: string | null;
+  dark_vibrant: string | null;
   light_muted: string;
-  light_vibrant: null;
+  light_vibrant: string | null;
   muted: string;
   vibrant: string;
 }
@@ -212,16 +212,12 @@ export interface Links {
 export interface Names {
   alternates: string[];
   common: string;
-  native: Native;
+  native: { [key: string]: LocalizedName };
   official: string;
-  translations: { [key: string]: SPA };
+  translations: { [key: string]: LocalizedName };
 }
 
-export interface Native {
-  spa: SPA;
-}
-
-export interface SPA {
+export interface LocalizedName {
   common: string;
   official: string;
 }
