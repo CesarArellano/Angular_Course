@@ -14,7 +14,7 @@ export default class ByCountryPageComponent {
   private countryService = inject(CountryService);
 
   query = signal<string>('');
-  debouncedQuery = debounced(this.query, 300);
+  debouncedQuery = debounced(this.query, 500);
 
   countryResource = rxResource({
     params: () => ({

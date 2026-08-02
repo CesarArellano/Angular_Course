@@ -13,7 +13,7 @@ import { rxResource } from '@angular/core/rxjs-interop';
 export class ByCapitalPageComponent {
   private countryService = inject(CountryService);
   query = signal('');
-  debouncedQuery = debounced(this.query, 300);
+  debouncedQuery = debounced(this.query, 500);
 
   countryResource = rxResource({
     params: () => ({

@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, of, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { RESTCountryResponse } from '../interfaces/rest-countries.interfaces';
 import { CountryMapper } from '../mappers/country.mapper';
+import { Country } from '../interfaces/country.interfaces';
 
 const API_URL = 'https://api.restcountries.com/countries/v5';
 
@@ -15,15 +16,20 @@ export class CountryService {
   private headers = new HttpHeaders({
     Authorization: `Bearer ${environment.countriesApiKey}`,
   });
+  private queryCapitalCache = new Map<string, Country[]>();
 
   searchByCapital(query: string) {
     query = query.toLowerCase();
+    if (this.queryCapitalCache.has(query)) {
+      return of(this.queryCapitalCache.get(query) ?? []);
+    }
     return this.http
       .get<RESTCountryResponse>(`${API_URL}/capitals?q=${query}`, { headers: this.headers })
       .pipe(
         map((response) =>
           CountryMapper.fromCountryResponseArrayToCountryArray(response.data.objects),
         ),
+        tap((countries) => this.queryCapitalCache.set(query, countries)),
       );
   }
 
