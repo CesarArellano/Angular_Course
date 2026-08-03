@@ -1,4 +1,8 @@
-<country-search-input placeholder="Search by Capital" (value)="query.set($event)" />
+<country-search-input
+  placeholder="Search by Capital"
+  (value)="query.set($event)"
+  [initialValue]="queryParam"
+/>
 @if (countryResource.error()) {
   <h2>{{ countryResource.error() }}</h2>
 }

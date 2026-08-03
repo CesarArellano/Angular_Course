@@ -4,6 +4,7 @@
     class="input input-bordered mx-6 w-56"
     [placeholder]="placeholder()"
     autofocus
+    [value]="inputValue()"
     #txtSearch
     (keyup)="onSearch(txtSearch.value)"
   />
