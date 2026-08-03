@@ -20,29 +20,30 @@
             </div>
           </td>
         </tr>
-      }
-      @for (country of countries(); track country.uuid; let i = $index) {
-        <tr>
-          <td>{{ i + 1 }}</td>
-          <td>{{ country.flag }}</td>
-          <td>
-            <img [src]="country.flagSvg" [alt]="country.name + ' flag'" class="h-6" />
-          </td>
-          <td>{{ country.name }}</td>
-          <td>{{ country.capital }}</td>
-          <td>
-            <span class="badge badge-secondary">{{ country.population | number }}</span>
-          </td>
-          <td>
-            <a [routerLink]="['/country/by', country.cca2]" class="link-primary cursor-pointer">
-              More info
-            </a>
-          </td>
-        </tr>
-      } @empty {
-        <tr>
-          <td colspan="6" class="text-center">No countries found</td>
-        </tr>
+      } @else {
+        @for (country of countries(); track country.uuid; let i = $index) {
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ country.flag }}</td>
+            <td>
+              <img [src]="country.flagSvg" [alt]="country.name + ' flag'" class="h-6" />
+            </td>
+            <td>{{ country.name }}</td>
+            <td>{{ country.capital }}</td>
+            <td>
+              <span class="badge badge-secondary">{{ country.population | number }}</span>
+            </td>
+            <td>
+              <a [routerLink]="['/country/by', country.cca2]" class="link-primary cursor-pointer">
+                More info
+              </a>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6" class="text-center">No countries found</td>
+          </tr>
+        }
       }
     </tbody>
   </table>

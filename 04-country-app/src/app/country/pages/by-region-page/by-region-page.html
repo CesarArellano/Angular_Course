@@ -1,1 +1,13 @@
-<country-list [countries]="[]" />
+<section class="flex flex-row gap-2">
+  @for (region of REGIONS; track $index) {
+    <button
+      class="btn"
+      (click)="onRegionSelected(region)"
+      [class.btn-primary]="regionQuery() === region"
+      [class.btn-outline]="regionQuery() !== region"
+    >
+      {{ region }}
+    </button>
+  }
+</section>
+<country-list [countries]="countryResource.value()!" [isLoading]="countryResource.isLoading()" />
